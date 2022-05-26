@@ -1,7 +1,7 @@
 const express = require('express')
 
 // Get routes to the variabel
-const router = require('./src/routes')
+const router = require('./src/routes/index')
 
 const app = express()
 
