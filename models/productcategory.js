@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      
     }
   };
   productCategory.init({
@@ -18,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     idCategory: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'productCategory',
+    modelName: 'productcategory',
   });
   return productCategory;
 };
