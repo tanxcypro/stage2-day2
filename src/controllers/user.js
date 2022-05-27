@@ -1,5 +1,6 @@
 // import profile model
-const { user,profile } = require("../../models");
+const { user,profile,product } = require("../../models");
+
 
 exports.addUsers = async (req, res) => {
   try {
@@ -47,6 +48,39 @@ exports.getUsers = async (req, res) => {
     });
   }
 };
+exports.getUserProducts = async (req, res) => {
+    try {
+      const users = await user.findAll({
+        // code here
+        where: {
+            status: "seller"
+          },
+          include: {
+            model: product,
+            as: "products",
+            attributes: {
+              exclude: ['createdAt', 'updatedAt', 'idUser']
+            }
+          },
+          attributes: {
+            exclude: ['createdAt', 'updatedAt', 'password']
+          }
+        })
+  
+      res.send({
+        status: "success",
+        data: {
+          users,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      res.send({
+        status: "failed",
+        message: "Server Error",
+      });
+    }
+  };
 
 exports.getUser = async (req, res) => {
   try {
